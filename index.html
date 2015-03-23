@@ -3,17 +3,6 @@
   <head lang="en">
     <meta charset="UTF-8">
     <title>Using ES6 in your Browser Now</title>
-
-    <script src="libs/es6-module-loader/dist/es6-module-loader.src.js"></script>
-    <script type="text/javascript"
-            src="libs/systemjs/dist/system.js">
-    </script>
-    <script>
-      System.paths['babel'] = './node_modules/babel-core/browser.js';
-      System.transpiler = 'babel';
-    </script>
-
-
     <link rel="stylesheet" href="libs/materialize/css/materialize.min.css">
     <style type="text/css">
       a.collection-item {
@@ -23,6 +12,11 @@
   </head>
 
   <body class="grey lighten-2">
+    <script src="libs/es6-module-loader/dist/es6-module-loader.src.js"></script>
+    <script type="text/javascript"
+            src="libs/systemjs/dist/system.js">
+    </script>
+
     <nav>
       <div class="container">
         <div class="nav-wrapper">
@@ -42,6 +36,6 @@
   <script type="text/javascript">
     "use strict";
 
-    System.import('src/app');
+    System.import('dist/app');
   </script>
 </html>
