@@ -5,40 +5,35 @@
 // --------------------------------------------------------------------------------------
 // --- Copyright (c) 2015 Nils Hartmann (http://nilshartmann.net).
 // -------------------------------------------------------------------------------------
-import $ from 'libs/jquery/dist/jquery'
 "use strict";
+import React from '../libs/react/react';
 
-export class TeamComponent {
-	constructor(domElement, teamModel) {
-		this.parentElement = $(domElement);
-		this.teamModel = teamModel;
+export class TeamComponent extends React.Component {
+	constructor() {
+		this.state = {selectedTeam: null};
+	}
 
-		// register listener to re-render on data change
-		this.teamModel.addListener(() => {
-			this.render();
-		})
+	setSelectedTeam(team) {
+		if (team === this.state.selectedTeam) {
+			this.setState({selectedTeam: null});
+		} else {
+			this.setState({selectedTeam: team});
+		}
 	}
 
 	render() {
-		// Remove all children
-		this.parentElement.empty();
-
-		// receive teams from store
-		const teams = this.teamModel.getAllTeams();
-
-		// create new component elements
-		const element = $('<div class="collection z-depth-2">').appendTo(this.parentElement);
-		teams.forEach((team) => {
-			let item = $(`<a class="collection-item grey-text text-darken-7">${team}</a>`);
-			if (this.teamModel.isSelectedTeam(team)) {
-				item.append($('<span class="badge"><i class="mdi-action-favorite red-text text-lighten-2"></i></span>'));
-			}
-
-			item.appendTo(element).click(() => {
-				// inform the model about user's choice
-				this.teamModel.setSelectedTeam(team);
-			})
-		});
+		const teams = this.props.teamService.getAllTeams();
+		return (
+			<div className="collection z-depth-2">
+			{teams.map((team) => {
+				let badge = '';
+				if (team === this.state.selectedTeam) {
+					badge = <span className="badge"><i className="mdi-action-favorite red-text text-lighten-2"></i></span>;
+				}
+				return <a key={team} className="collection-item grey-text text-darken-7" onClick={this.setSelectedTeam.bind(this, team)}>{team} {badge}</a>
+			})}
+			</div>
+		);
 	}
 }
 
