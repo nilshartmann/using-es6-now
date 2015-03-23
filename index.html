@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <title>Using ES6 in your Browser Now</title>
+
+    <script type="text/javascript" src="libs/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/babel-core/browser.js"></script>
+
+    <link rel="stylesheet" href="libs/materialize/css/materialize.min.css">
+    <style type="text/css">
+      a.collection-item {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body class="grey lighten-2">
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Select your favorite team!</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="col s6 offset-s3">
+        <div id="teams">
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/babel" src="src/app.js"></script>
+</html>
