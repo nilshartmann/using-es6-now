@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <title>Using ES6 in your Browser Now</title>
 
-    <script type="text/javascript" src="libs/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="node_modules/babel-core/browser.js"></script>
+    <script src="libs/es6-module-loader/dist/es6-module-loader.src.js"></script>
+    <script type="text/javascript"
+            src="libs/systemjs/dist/system.js">
+    </script>
+    <script>
+      System.paths['babel'] = './node_modules/babel-core/browser.js';
+      System.transpiler = 'babel';
+    </script>
+
 
     <link rel="stylesheet" href="libs/materialize/css/materialize.min.css">
     <style type="text/css">
@@ -32,5 +39,9 @@
     </div>
   </body>
 
-  <script type="text/babel" src="src/app.js"></script>
+  <script type="text/javascript">
+    "use strict";
+
+    System.import('src/app');
+  </script>
 </html>
