@@ -1,3 +1,4 @@
 https://github.com/ModuleLoader/es6-module-loader/tree/dcda0b5f4dc786091491a06954ca40d11e927951
 https://github.com/systemjs/systemjs/tree/b4fe95d6f8e16fcf27f845783a19acbfed757602
 
+fetch.js: https://raw.githubusercontent.com/github/fetch/654c94f2585e799c802d1cbc8a2894c939213c22/fetch.js

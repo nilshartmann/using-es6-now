@@ -8,12 +8,18 @@
   "author": "Nils Hartmann",
   "license": "EPL",
   "dependencies": {
-
+    "co-body": "^1.1.0",
+    "koa": "^0.18.1",
+    "koa-json": "^1.1.1",
+    "koa-route": "^2.4.0",
+    "koa-session": "^3.1.0",
+    "koa-static": "^1.4.9"
   },
   "devDependencies": {
     "babel-core": "^4.7.16",
     "gulp": "^3.8.11",
     "gulp-babel": "^4.0.0",
+    "gulp-logger": "0.0.2",
     "gulp-watch": "^4.2.0"
   }
 }

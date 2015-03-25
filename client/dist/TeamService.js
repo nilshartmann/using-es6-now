@@ -9,11 +9,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 // --------------------------------------------------------------------------------------
 // ---
-// --- TeamService: A Service returning a list of Teams. (mock implementation)
+// --- TeamService: A Service communicating with the remote backend
 // ---
 // --------------------------------------------------------------------------------------
 // --- Copyright (c) 2015 Nils Hartmann (http://nilshartmann.net).
 // -------------------------------------------------------------------------------------
+
+"use strict";
+
+function post(url, body) {
+	body = JSON.stringify(body);
+	return fetch(url, {
+		method: "post",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json"
+		},
+		body: body
+	});
+}
 
 var TeamService = exports.TeamService = (function () {
 	function TeamService() {
@@ -21,9 +35,29 @@ var TeamService = exports.TeamService = (function () {
 	}
 
 	_createClass(TeamService, {
-		getAllTeams: {
-			value: function getAllTeams() {
-				return ["Bayern München", "VfL Wolfsburg", "Borussia Mönchengladbach", "Bayer 04 Leverkusen", "FC Schalke 04", "FC Augsburg", "TSG Hoffenheim", "Eintracht Frankfurt", "Werder Bremen", "Borussia Dortmund", "1. FSV Mainz 05", "1. FC Köln", "Hertha BSC", "Hannover 96", "SC Freiburg", "Hamburger SV", "SC Paderborn", "VfB Stuttgart"];
+		getModel: {
+			/** Read the whole current model from server */
+
+			value: function getModel(callback) {
+				fetch("/api/teams").then(function (response) {
+					return response.json();
+				}).then(function (json) {
+					callback(json);
+				})["catch"](function (ex) {
+					console.log("parsing failed", ex);
+				});
+			}
+		},
+		teamSelected: {
+
+			/** Posts the new selected team to the server */
+
+			value: function teamSelected(team, callback) {
+				post("/api/teams", { selectedTeam: team }).then(function (response) {
+					return response.json();
+				}).then(function (json) {
+					callback(json.teamSelected);
+				});
 			}
 		}
 	});
